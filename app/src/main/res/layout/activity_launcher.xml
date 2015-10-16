@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scene_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LauncherActivity">
+
+    <!-- TODO: use plot of gaussian image -->
+
+    <TextView
+        android:id="@+id/delay_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        android:gravity="center_horizontal"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        tools:text="Noise will start in 04:12:12"/>
+
+    <Button
+        android:id="@+id/noise_later_button"
+        android:text="@string/noise_soon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        style="@style/Base.Widget.AppCompat.Button.Colored" />
+
+    <Button
+        android:id="@+id/noise_cancel_button"
+        android:text="@string/cancel_scheduled_noise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        style="@style/Base.Widget.AppCompat.Button.Colored" />
+
+</LinearLayout>
