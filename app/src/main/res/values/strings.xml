@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Noise</string>
-    <string name="noise_soon">Noise in four hours</string>
+    <string name="noise_soon">Noise in five hours</string>
     <string name="cancel_scheduled_noise">Cancel noise</string>
     <string name="noise_has_started">Noise has started</string>
     <string name="noise_playing">Noise playing</string>

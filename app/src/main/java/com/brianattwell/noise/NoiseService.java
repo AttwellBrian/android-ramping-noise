@@ -60,7 +60,7 @@ public class NoiseService extends Service {
             PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder =
             new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.drawable.notification)
                 .setContentTitle(getString(R.string.noise_playing))
                 .setContentText(String.format("Volume at %d%%", percent))
                 .setContentIntent(pi);
