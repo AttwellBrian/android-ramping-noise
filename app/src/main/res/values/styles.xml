@@ -8,14 +8,4 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!--
-    <style name="ButtonRedTheme">
-        <item name="android:colorButtonNormal">@color/colorAccent</item>
-    </style>
-
-    <style name="ButtonBlueTheme">
-        <item name="android:colorButtonNormal">@color/colorPrimary</item>
-    </style>
--->
-
 </resources>
