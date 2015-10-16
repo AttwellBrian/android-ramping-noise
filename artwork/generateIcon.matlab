@@ -1,7 +1,7 @@
 function y = ss(x) 
   y = sin(x) * x
 end
-x=0:.1:30;
-plot(x,arrayfun(@ss,x),"linewidth", 6, 'Color',[0xFF/0xFF,40.0/0xFF,81.0/0xFF])
+x=0:.1:25;
+plot(x,arrayfun(@ss,x),"linewidth", 12, 'Color',[0xFF/0xFF,0x40/0xFF,0x81/0xFF])
 axis off;
-set(gcf,'Color',[0,0.7,0.9])
+set(gcf,'Color',[0x35/0xFF,0x51/0xFF,0xB5/0xFF])
