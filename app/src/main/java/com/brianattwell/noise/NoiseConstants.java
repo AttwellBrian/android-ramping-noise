@@ -8,6 +8,6 @@ public interface NoiseConstants {
      * Sample rate that white noise will get generated at. In order to be true white noise this needs to be 20 kHZ.
      * But I don't like true white noise.
      */
-    int SAMPLE_RATE_HZ = 10000;
+    int SAMPLE_RATE_HZ = 5000;
     int SOUND_BUFFER_LENGTH_MS = 500;
 }
