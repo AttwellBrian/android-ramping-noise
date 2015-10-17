@@ -24,8 +24,10 @@ public class NoiseService extends Service {
                 NoiseGenerator generator = new NoiseGenerator();
                 double amplitude = intent.getDoubleExtra(START_VOLUME_ARGS, NoiseConstants.MINIMUM_AMPLITUDE);
                 while (mIsRunning) {
-                    amplitude += Math.min((System.currentTimeMillis() - startTime)
-                        / NoiseConstants.AMPLITUDE_RAMP_DURATION_MS, 1);
+                    amplitude += (System.currentTimeMillis() - startTime) / NoiseConstants.AMPLITUDE_RAMP_DURATION_MS;
+                    if (amplitude > 1) {
+                        amplitude = 1;
+                    }
                     showNotification((int) (amplitude * 100));
                     generator.playSound(amplitude);
                 }
