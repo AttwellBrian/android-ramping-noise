@@ -4,4 +4,5 @@
     <string name="cancel_scheduled_noise">Cancel noise</string>
     <string name="noise_has_started">Noise has started</string>
     <string name="noise_playing">Noise playing</string>
+    <string name="noise_now">Noise immediately</string>
 </resources>

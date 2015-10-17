@@ -9,11 +9,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 
 public class NoiseService extends Service {
+    public static final String START_VOLUME_ARGS = "start_volume";
     private static final int NOTIFICATION_ID = 1;
     private static NoiseService mInstance;
     private volatile boolean mIsRunning;
 
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public int onStartCommand(final Intent intent, int flags, int startId) {
         mInstance = this;
         mIsRunning = true;
         new AsyncTask<Void, Void, Void>() {
@@ -21,10 +22,10 @@ public class NoiseService extends Service {
             protected Void doInBackground(Void... params) {
                 final long startTime = System.currentTimeMillis();
                 NoiseGenerator generator = new NoiseGenerator();
+                double amplitude = intent.getDoubleExtra(START_VOLUME_ARGS, NoiseConstants.MINIMUM_AMPLITUDE);
                 while (mIsRunning) {
-                    final double amplitude = NoiseConstants.MINIMUM_AMPLITUDE
-                        + (System.currentTimeMillis() - startTime) / NoiseConstants.AMPLITUDE_RAMP_DURATION_MS;
-
+                    amplitude += Math.min((System.currentTimeMillis() - startTime)
+                        / NoiseConstants.AMPLITUDE_RAMP_DURATION_MS, 1);
                     showNotification((int) (amplitude * 100));
                     generator.playSound(amplitude);
                 }

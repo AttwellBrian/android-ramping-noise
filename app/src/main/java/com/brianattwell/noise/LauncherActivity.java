@@ -24,6 +24,7 @@ import io.fabric.sdk.android.Fabric;
 public class LauncherActivity extends AppCompatActivity {
 
     @Bind(R.id.noise_later_button) Button laterButton;
+    @Bind(R.id.noise_now_button) Button noiseNowButton;
     @Bind(R.id.delay_textView) TextView delayTextView;
     @Bind(R.id.noise_cancel_button) Button cancelButton;
 
@@ -81,8 +82,7 @@ public class LauncherActivity extends AppCompatActivity {
             ALARM_REQUEST_CODE, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         long triggerAtMillis = System.currentTimeMillis() + NoiseConstants.NOISE_START_DELAY;
-        manager.set(AlarmManager.RTC_WAKEUP, triggerAtMillis,
-            pendingIntent);
+        manager.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
         mSharedPref.edit().putLong(TIME_PREF_KEY, triggerAtMillis).apply();
         bindSharedPreferencesToView();
     }
@@ -91,6 +91,15 @@ public class LauncherActivity extends AppCompatActivity {
     void onClickCancelNoise() {
         NoiseService.stopRunning();
         mSharedPref.edit().clear().apply();
+        bindSharedPreferencesToView();
+    }
+
+    @OnClick(R.id.noise_now_button)
+    void onClickNoiseNow() {
+        Intent intent = new Intent(this, NoiseService.class);
+        intent.putExtra(NoiseService.START_VOLUME_ARGS, 1.0);
+        startService(intent);
+        mSharedPref.edit().putLong(TIME_PREF_KEY, System.currentTimeMillis()).apply();
         bindSharedPreferencesToView();
     }
 
@@ -103,10 +112,11 @@ public class LauncherActivity extends AppCompatActivity {
         long time = mSharedPref.getLong("time", 0);
         if (time != 0) {
             laterButton.setVisibility(View.GONE);
+            noiseNowButton.setVisibility(View.GONE);
             cancelButton.setVisibility(View.VISIBLE);
             delayTextView.setVisibility(View.VISIBLE);
             long seconds = (time - System.currentTimeMillis()) / 1000;
-            if (seconds < 0) {
+            if (seconds <= 0) {
                 delayTextView.setText(R.string.noise_has_started);
             } else {
                 String duration = String.format("Noise will start in %d hours, %d minutes, %d seconds.",
@@ -116,6 +126,7 @@ public class LauncherActivity extends AppCompatActivity {
 
         } else {
             laterButton.setVisibility(View.VISIBLE);
+            noiseNowButton.setVisibility(View.VISIBLE);
             cancelButton.setVisibility(View.GONE);
             delayTextView.setVisibility(View.GONE);
         }
